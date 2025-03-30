@@ -1,0 +1,22 @@
+{
+  "name": "playwright-hydrid-framework",
+  "version": "1.0.0",
+  "description": "Playwright installation\r - 01 - Nodejs\r - 02 - VS Code\r - 03 - Create project folder (ex: playwright_hybrid_framework_nopcommerce)\r - 04 - Install playwright using terminal:\t> npm init playwright@latest\r \t - To check playwright version:\t> npm playwright -v\r \t - package.json: node project management file to manage all dependencies\r \t - playwright.config.js: playwright configuration file\r \t - tests folder: contains all the playright tests \r - 05 - Install Playright VS Code extension: Playwright Test for VSCode",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TranKiet97/Playwright-Hydrid-Framework.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TranKiet97/Playwright-Hydrid-Framework/issues"
+  },
+  "homepage": "https://github.com/TranKiet97/Playwright-Hydrid-Framework#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.51.1",
+    "@types/node": "^22.13.14"
+  }
+}
