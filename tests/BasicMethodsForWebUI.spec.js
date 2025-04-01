@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-test.only('Log in to Sale Serp sucessfully', async ({ page }) => {
+test('Log in to Sale Serp sucessfully', async ({ page }) => {
     const usernameTextbox = page.locator('#email');
     const passwordTextbox = page.locator('#password');
     const loginBtn = page.locator("//button[text()='Login']");
