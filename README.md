@@ -35,3 +35,11 @@ npx playwright test MyTest.spec.js --debug
 ```bash
 npx playwright show-report
 ```
+
+## Some notes
+- `await` is required only when you are performing the action
+```javascript
+expect(await page.getByRole('radio', { name: 'Male', exact: true }).isChecked()).toBeFalsy()
+await expect(page.getByRole('radio', { name: 'Male', exact: true })).toBeChecked()
+```
+- `await currentPage.pause()` is used to debug
