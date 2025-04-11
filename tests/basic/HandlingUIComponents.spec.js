@@ -1,5 +1,4 @@
 import { test, expect } from "@playwright/test";
-import { waitForDebugger } from "inspector";
 
 test('Handling Textbox, Default Dropdown, Radio Button', async ({ page }) => {
     const firstNameTextbox = page.locator("input[name='firstname']")
