@@ -35,6 +35,10 @@ npx playwright test MyTest.spec.js --debug
 ```bash
 npx playwright show-report
 ```
+- Open the Playwirght UI runner
+```bash
+npx playwright test --ui
+```
 
 ## Some notes
 - `await` is required only when you are performing the action
@@ -43,3 +47,13 @@ expect(await page.getByRole('radio', { name: 'Male', exact: true }).isChecked())
 await expect(page.getByRole('radio', { name: 'Male', exact: true })).toBeChecked()
 ```
 - `await currentPage.pause()` is used to debug
+- If your HTML is like this where label and obviously tag ends with label, for example the edit box is wrapped in the label, we call this as an association. And in this scenerio, `await page.getByLabel("Password").fill("test123")` works. Other than that, another scenerio also works as long as there is association between `for` attribute of that label (`for="exampleInputPassword1"` of the label and `id="exampleInputPassword1"` of the input)
+```html
+<label>
+  Password
+  <input type="password" />
+</label>
+
+<label for="exampleInputPassword1">Password</label>
+<input class="form-control" id="exampleInputPassword1" placeholder="Password" type="password">
+```
