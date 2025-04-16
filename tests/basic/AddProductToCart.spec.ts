@@ -42,7 +42,7 @@ test('Add Product To Cart', async ({ page }) => {
    await expect(page.locator(".user__name [type='text']").first()).toHaveText(email);
    await page.locator(".action__submit").click();
    await expect(page.locator(".hero-primary")).toHaveText(" Thankyou for the order. ");
-   const orderId = await page.locator(".em-spacer-1 .ng-star-inserted").textContent();
+   const orderId = await page.locator(".em-spacer-1 .ng-star-inserted").innerText();
    console.log(orderId);
  
    await page.locator("button[routerlink*='myorders']").click();
@@ -51,13 +51,13 @@ test('Add Product To Cart', async ({ page }) => {
  
  
    for (let i = 0; i < await rows.count(); ++i) {
-      const rowOrderId = await rows.nth(i).locator("th").textContent();
+      const rowOrderId = await rows.nth(i).locator("th").innerText();
       if (orderId.includes(rowOrderId)) {
          await rows.nth(i).locator("button").first().click();
          break;
       }
    }
-   const orderIdDetails = await page.locator(".col-text").textContent();
+   const orderIdDetails = await page.locator(".col-text").innerText();
    expect(orderId.includes(orderIdDetails)).toBeTruthy();
  
 });

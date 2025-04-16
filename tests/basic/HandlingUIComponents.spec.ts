@@ -64,5 +64,5 @@ test('Handling Element Visibility and Dialog/Frame', async ({ page }) => {
 
     // Frame/iFrame
     const framePage = page.frameLocator("#courses-iframe")
-    await expect(framePage).toHaveTitle("Selenium, API Testing, Software Testing & More QA Tutorials  | Rahul Shetty Academy")
+    await expect(framePage.locator('title')).toHaveText("Selenium, API Testing, Software Testing & More QA Tutorials  | Rahul Shetty Academy")
 });
