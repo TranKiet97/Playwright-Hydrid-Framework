@@ -57,3 +57,10 @@ await expect(page.getByRole('radio', { name: 'Male', exact: true })).toBeChecked
 <label for="exampleInputPassword1">Password</label>
 <input class="form-control" id="exampleInputPassword1" placeholder="Password" type="password">
 ```
+- To debug using VS code, you can config the command in package.json file. For example
+```json
+"scripts": {
+    "debug": "npx playwright test ./tests/basic/APITestingSessionStorage.spec.js --headed"
+  },
+```
+- And open Command Palatte -> seclect `Debug: Debug npm Script`
