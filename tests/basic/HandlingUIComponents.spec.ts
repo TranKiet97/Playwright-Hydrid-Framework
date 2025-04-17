@@ -38,12 +38,12 @@ test('Handling Windows and Tabs', async ({ browser }) => {
     await currentPage.goto('https://automationfc.github.io/basic-form/index.html')
     // Listen for any new page -> return 3 status (pending, rejected, fulfilled)
     const [newPage] = await Promise.all(
-        [context.waitForEvent('page'), 
+        [context.waitForEvent('page'),
         googleLink.click()]
     )
 
     await expect(newPage).toHaveTitle("Google")
-    
+
     await currentPage.locator('#mail').fill("kanetran@gmail.com")
 });
 

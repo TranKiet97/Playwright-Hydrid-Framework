@@ -1,6 +1,6 @@
 import { test, expect, request } from '@playwright/test';
 import { APIFlow } from '../../utils/APIFlow';
-const loginPayload = {"userEmail":"kanetest@gmail.com","userPassword":"Test@1234"}
+const loginPayload = { "userEmail": "kanetest@gmail.com", "userPassword": "Test@1234" }
 const orderPayLoad = { orders: [{ country: "Cuba", productOrderedId: "67a8dde5c0d3e6622a297cc8" }] };
 
 let orderId: (string | null)[], token: any;

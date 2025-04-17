@@ -5,17 +5,17 @@ test("Get Eggs Price", async () => {
     try {
         // Create a new API context for making HTTP requests
         const apiContext = await request.newContext();
-        
+
         // Make a GET request to fetch egg prices
         const baseUrl = "https://trungsonglong.com";
         const res = await apiContext.get(`${baseUrl}/bang-gia-trung-ga-tuoi-trung-vit-tuoi-hom-nay`);
-        
+
         // Verify the response is OK (status 200)
         expect(res).toBeOK();
-        
+
         // Get the HTML content from the response
         const resBody = await res.text();
-        
+
         // Create a DOM parser to parse the HTML string
         const dom = new JSDOM(resBody);
         const document = dom.window.document;
