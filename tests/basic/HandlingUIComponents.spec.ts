@@ -38,12 +38,12 @@ test('Handling Windows and Tabs', async ({ browser }) => {
     await currentPage.goto('https://automationfc.github.io/basic-form/index.html')
     // Listen for any new page -> return 3 status (pending, rejected, fulfilled)
     const [newPage] = await Promise.all(
-        [context.waitForEvent('page'), 
+        [context.waitForEvent('page'),
         googleLink.click()]
     )
 
     await expect(newPage).toHaveTitle("Google")
-    
+
     await currentPage.locator('#mail').fill("kanetran@gmail.com")
 });
 
@@ -64,5 +64,6 @@ test('Handling Element Visibility and Dialog/Frame', async ({ page }) => {
 
     // Frame/iFrame
     const framePage = page.frameLocator("#courses-iframe")
-    await expect(framePage).toHaveTitle("Selenium, API Testing, Software Testing & More QA Tutorials  | Rahul Shetty Academy")
+    console.log(await framePage.locator('//title').innerText())
+    expect(await framePage.locator('//title').innerText()).toContain("Selenium, API Testing, Software Testing & More QA Tutorials  | Rahul Shetty Academy")
 });

@@ -1,10 +1,10 @@
 import { test, expect, request } from "@playwright/test";
-const loginPayload = {"userEmail":"kanetest@gmail.com","userPassword":"Test@1234"}
-let token
+const loginPayload = { "userEmail": "kanetest@gmail.com", "userPassword": "Test@1234" }
+let token: any
 
 test.beforeAll(async () => {
     const apiContext = await request.newContext()
-    const loginResponse = await apiContext.post("https://rahulshettyacademy.com/api/ecom/auth/login", { data : loginPayload })
+    const loginResponse = await apiContext.post("https://rahulshettyacademy.com/api/ecom/auth/login", { data: loginPayload })
     expect(loginResponse).toBeOK()
     const loginResponseJson = await loginResponse.json();
     token = loginResponseJson.token

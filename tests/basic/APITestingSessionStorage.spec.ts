@@ -1,6 +1,6 @@
-import { test } from '@playwright/test';
+import { BrowserContext, test } from '@playwright/test';
 
-let webContext;
+let webContext: BrowserContext;
 test.beforeAll(async ({ browser }) => {
     const email = "kanetest@gmail.com";
     const pw = "Test@1234";
@@ -23,6 +23,6 @@ test('API Testing With Session Storage', async () => {
     // Get all the inner text content from card title elements
     const cardTitles = await page.locator(".card-body b").allInnerTexts();
     // Create a new array with trimmed titles to remove any extra whitespace
-    const cardTitlesText = cardTitles.map(title => title.trim());
+    const cardTitlesText = cardTitles.map((title: string) => title.trim());
     console.log(cardTitlesText);
 });
