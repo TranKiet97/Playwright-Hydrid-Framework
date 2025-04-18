@@ -1,26 +1,26 @@
 import { Locator, Page } from "@playwright/test";
-import Environments from "../utils/environments";
+import Environments from "../utils/Environments";
 
 export class LoginPage {
     loginButton: Locator;
-    emailAddress: Locator;
+    userName: Locator;
     password: Locator;
     page: Page;
 
     constructor(page: Page) {
       this.page = page;
-      this.loginButton = page.locator("#send2");
-      this.emailAddress = page.locator("#email");
-      this.password = page.locator("#pass");
+      this.loginButton = page.locator("//button[@type='submit']");
+      this.userName = page.locator("//input[@name='username']");
+      this.password = page.locator("//input[@name='password']");
     }
 
     async goTo() {
-      await this.page.goto(Environments.TECH_PANDA_URL);
+      await this.page.goto(Environments.ORANGE_HRM_URL);
     }
 
-    async loginWithRequiredFields(emailAddress: string, password: string) {
-      await this.emailAddress.waitFor({ state: "visible", timeout: 5000 });
-      await this.emailAddress.fill(emailAddress);
+    async loginWithRequiredFields(username: string, password: string) {
+      await this.userName.waitFor({ state: "visible", timeout: 5000 });
+      await this.userName.fill(username);
 
       await this.password.waitFor({ state: "visible", timeout: 5000 });
       await this.password.fill(password);
@@ -28,7 +28,6 @@ export class LoginPage {
       await this.loginButton.waitFor({ state: "visible", timeout: 5000 });
       await this.loginButton.click();
       
-      this.page.on("dialog", (dialog) => dialog.accept());
       await this.page.waitForLoadState("domcontentloaded");
     }
 }

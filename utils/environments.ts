@@ -1,3 +1,3 @@
 export default class Environments {
-    public static readonly TECH_PANDA_URL = "https://live.techpanda.org/index.php/customer/account/login/";
+    public static readonly ORANGE_HRM_URL = "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login";
 }

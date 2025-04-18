@@ -4,7 +4,10 @@
   "description": "Playwright installation\r - 01 - Nodejs\r - 02 - VS Code\r - 03 - Create project folder (ex: playwright_hybrid_framework_nopcommerce)\r - 04 - Install playwright using terminal:\t> npm init playwright@latest\r \t - To check playwright version:\t> npm playwright -v\r \t - package.json: node project management file to manage all dependencies\r \t - playwright.config.js: playwright configuration file\r \t - tests folder: contains all the playright tests \r - 05 - Install Playright VS Code extension: Playwright Test for VSCode",
   "main": "index.js",
   "scripts": {
-    "debug": "npx playwright test ./tests/basic/APIGetEggsPrice.spec.js --headed"
+    "debug": "npx playwright test ./tests/basic/APIGetEggsPrice.spec.js --headed",
+    "chrome test": "npx playwright test ./tests/ui/ --project=chrome",
+    "safari test": "npx playwright test ./tests/ui/ --project=safari",
+    "firefox test": "npx playwright test ./tests/ui/ --project=firefox"
   },
   "repository": {
     "type": "git",
@@ -20,9 +23,11 @@
   "devDependencies": {
     "@playwright/test": "^1.51.1",
     "@types/jsdom": "^21.1.7",
-    "@types/node": "^22.13.14"
+    "@types/node": "^22.13.14",
+    "allure-playwright": "^3.2.1"
   },
   "dependencies": {
+    "exceljs": "^4.4.0",
     "jsdom": "^26.0.0"
   }
 }

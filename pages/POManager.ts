@@ -1,23 +1,23 @@
 import { LoginPage } from "./LoginPage";
-import { AccountDashboardPage } from "./AccountDashboardPage";
+import { DashboardPage } from "./DashboardPage"
 import { Page } from "@playwright/test";
 
 export class POManager {
     loginPage: LoginPage;
-    accountDashboardPage: AccountDashboardPage;
+    dashboardPage: DashboardPage;
     page: Page;
 
     constructor(page: Page) {
         this.page = page;
         this.loginPage = new LoginPage(this.page);
-        this.accountDashboardPage = new AccountDashboardPage(this.page);
+        this.dashboardPage = new DashboardPage(this.page);
     }
 
     getLoginPage() {
         return this.loginPage;
     }
 
-    getAccountDashboardPage() {
-        return this.accountDashboardPage;
+    getDashboardPage() {
+        return this.dashboardPage;
     }
 }
