@@ -64,3 +64,53 @@ await expect(page.getByRole('radio', { name: 'Male', exact: true })).toBeChecked
   },
 ```
 - And open Command Palatte -> seclect `Debug: Debug npm Script`
+- To run scripts `npm run 'debug'`
+- To run test cases in test class in parallel we use this scripts
+```typescript
+test.describe.configure({ mode: 'parallel' });
+```
+- To tag a test, either provide an additional details object when declaring a test, or add @-token to the test title. Note that tags must start with @ symbol
+```typescript
+import { test, expect } from '@playwright/test';
+
+test('test login page', {
+  tag: '@fast',
+}, async ({ page }) => {
+  // ...
+});
+
+test('test full report @slow', async ({ page }) => {
+  // ...
+});
+```
+- You can also tag all tests in a group or provide multiple tags
+```typescript
+import { test, expect } from '@playwright/test';
+
+test.describe('group', {
+  tag: '@report',
+}, () => {
+  test('test report header', async ({ page }) => {
+    // ...
+  });
+
+  test('test full report', {
+    tag: ['@slow', '@vrt'],
+  }, async ({ page }) => {
+    // ...
+  });
+});
+```
+- You can now run tests that have a particular tag with --grep command line option.
+```bash
+npx playwright test --grep "@fast"
+```
+- To config Allure Reporter for project, access this github repo and follow the construction: `https://github.com/allure-framework/allure-js/tree/main/packages/allure-playwright`
+- Generate Allure Report after the tests are executed
+```bash
+allure generate ./allure-results -o ./allure-report
+```
+- Open the generated report
+```bash
+allure open ./allure-report
+```
