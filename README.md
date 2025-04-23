@@ -106,11 +106,22 @@ test.describe('group', {
 npx playwright test --grep "@fast"
 ```
 - To config Allure Reporter for project, access this github repo and follow the construction: `https://github.com/allure-framework/allure-js/tree/main/packages/allure-playwright`
+- Delete old allure report first
+```bash
+# Windows
+Remove-Item -Path allure-results -Recurse -Force
+# Mac/Linux 
+rm -rf allure-results
+```
 - Generate Allure Report after the tests are executed
 ```bash
-allure generate ./allure-results -o ./allure-report
+allure generate ./allure-results -o ./allure-report --clean
 ```
 - Open the generated report
 ```bash
 allure open ./allure-report
+```
+- To do the type checking without trying to compile the code and spit out JS
+```bash
+npx tsc --noEmit
 ```
