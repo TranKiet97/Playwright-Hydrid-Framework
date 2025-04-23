@@ -1,20 +1,18 @@
 import { test, expect, request } from '@playwright/test';
 import { APIFlow } from '../../utils/APIFlow';
 const loginPayload = { "userEmail": "kanetest@gmail.com", "userPassword": "Test@1234" }
-const orderPayLoad = { orders: [{ country: "Cuba", productOrderedId: "67a8dde5c0d3e6622a297cc8" }] };
 const fakePayLoadOrders = { data: [], message: "No Orders" };
 
-let orderId: any, token: any;
+let token: string;
 test.beforeAll(async () => {
     const apiContext = await request.newContext();
     const apiFlow = new APIFlow(apiContext);
     token = await apiFlow.getToken(loginPayload);
-    orderId = await apiFlow.createOrder(orderPayLoad, token);
 })
 
 test('Fake Data With Route Method', async ({ page }) => {
-    let body = JSON.stringify(fakePayLoadOrders);
-    page.addInitScript(value => {
+    const body = JSON.stringify(fakePayLoadOrders);
+    await page.addInitScript(value => {
         window.localStorage.setItem('token', value);
     }, token);
     await page.goto("https://rahulshettyacademy.com/client");
@@ -22,12 +20,10 @@ test('Fake Data With Route Method', async ({ page }) => {
     await page.route("https://rahulshettyacademy.com/api/ecom/order/get-orders-for-customer/*",
         async route => {
             const response = await page.request.fetch(route.request());
-            route.fulfill(
-                {
-                    response,
-                    body,
-
-                });
+            await route.fulfill({
+                response,
+                body,
+            });
         });
 
     await page.locator("button[routerlink*='myorders']").click();

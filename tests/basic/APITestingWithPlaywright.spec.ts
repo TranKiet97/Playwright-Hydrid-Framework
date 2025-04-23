@@ -1,6 +1,6 @@
 import { test, expect, request } from "@playwright/test";
 const loginPayload = { "userEmail": "kanetest@gmail.com", "userPassword": "Test@1234" }
-let token: any
+let token: string
 
 test.beforeAll(async () => {
     const apiContext = await request.newContext()

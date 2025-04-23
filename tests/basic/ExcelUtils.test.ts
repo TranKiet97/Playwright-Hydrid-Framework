@@ -1,9 +1,7 @@
 import { ExcelUtils } from '../../utils/ExcelUtils';
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
 
 test('Upload download excel validation', async ({ page }) => {
-    const textSearch = 'Mango';
-    const updateValue = '350';
     
     await page.goto("https://rahulshettyacademy.com/upload-download-test/index.html");
     const downloadPromise = page.waitForEvent('download');

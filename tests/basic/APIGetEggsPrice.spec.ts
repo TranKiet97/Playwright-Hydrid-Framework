@@ -11,7 +11,7 @@ test("Get Eggs Price", async () => {
         const res = await apiContext.get(`${baseUrl}/bang-gia-trung-ga-tuoi-trung-vit-tuoi-hom-nay`);
 
         // Verify the response is OK (status 200)
-        expect(res).toBeOK();
+        await expect(res).toBeOK();
 
         // Get the HTML content from the response
         const resBody = await res.text();

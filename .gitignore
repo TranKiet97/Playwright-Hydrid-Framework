@@ -13,3 +13,6 @@ allure-report/
 
 # VS Code
 .vscode/
+
+# Cursor
+.cursor

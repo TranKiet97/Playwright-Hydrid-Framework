@@ -1,11 +1,12 @@
 import { Locator, Page } from "@playwright/test";
-import Environments from "../utils/Environments";
+import Environments from "../utils/environments";
+import { retryMechanism, step } from "./Base";
 
 export class LoginPage {
-    loginButton: Locator;
-    userName: Locator;
-    password: Locator;
-    page: Page;
+    readonly loginButton: Locator;
+    readonly userName: Locator;
+    readonly password: Locator;
+    readonly page: Page;
 
     constructor(page: Page) {
       this.page = page;
@@ -14,20 +15,18 @@ export class LoginPage {
       this.password = page.locator("//input[@name='password']");
     }
 
+    @step("Go to OrangeHRM")
     async goTo() {
-      await this.page.goto(Environments.ORANGE_HRM_URL);
+      await this.page.goto(Environments.ORANGE_HRM_URL, { waitUntil: "domcontentloaded" });
     }
 
+    @step("Login with valid username and password")
     async loginWithRequiredFields(username: string, password: string) {
-      await this.userName.waitFor({ state: "visible", timeout: 5000 });
-      await this.userName.fill(username);
-
-      await this.password.waitFor({ state: "visible", timeout: 5000 });
-      await this.password.fill(password);
-
-      await this.loginButton.waitFor({ state: "visible", timeout: 5000 });
-      await this.loginButton.click();
-      
-      await this.page.waitForLoadState("domcontentloaded");
+        await retryMechanism(30000, [1000, 2000, 5000])(async () => {
+            await this.userName.fill(username);
+            await this.password.fill(password);
+            await this.loginButton.click();
+            await this.page.waitForLoadState("domcontentloaded");
+        });
     }
 }
